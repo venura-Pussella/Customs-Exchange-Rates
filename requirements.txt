@@ -1,0 +1,7 @@
+pymupdf
+python-dotenv
+requests
+playwright
+azure-ai-documentintelligence
+azure-cosmos
+azure-storage-blob
