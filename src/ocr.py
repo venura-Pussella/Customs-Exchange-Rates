@@ -3,6 +3,7 @@ from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult, AnalyzeDocumentRequest
 import os
 from src.exceptions import DocIntelligenceCouldNotFindTableException
+from src import email_notify
 
 def extract_text_from_image(image: bytes) -> str:
     """OCRs a csv string from the image.
@@ -51,6 +52,9 @@ def extract_text_from_image(image: bytes) -> str:
             csv_string += '\n'
         else:
             csv_string += ','
+        if i == 0:
+            if csv_string != ',Country,Country Code,Currency,Currency Code,Rate of Exchange (Rs.)\n':
+                email_notify.send_email("Schema validation failed. Maybe it's just an OCR issue, or maybe they changed the format of the scanned PDF")
         
         
 

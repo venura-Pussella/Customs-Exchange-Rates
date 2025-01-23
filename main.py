@@ -10,6 +10,7 @@ from src.link_tracker import update_processed_links, get_processed_links
 import logging # for use in Azure functions environment (replace all calls to logger object with python logging class)
 from src import logHandling
 from src.logHandling import log_messages, update_logs_in_AzStorage
+from src import email_notify
 
 def process_link(name,pdf_link):
         
@@ -63,4 +64,5 @@ except Exception as e:
     logging.error('Main function crashed! :')
     logging.error(e)
     update_logs_in_AzStorage() 
+    email_notify.send_email(f'Main function crashed! {e}')
 
