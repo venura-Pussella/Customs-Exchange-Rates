@@ -54,7 +54,7 @@ def extract_text_from_image(image: bytes) -> str:
             csv_string += ','
         if i == 0:
             if csv_string != ',Country,Country Code,Currency,Currency Code,Rate of Exchange (Rs.)\n':
-                email_notify.send_email("Schema validation failed. Maybe it's just an OCR issue, or maybe they changed the format of the scanned PDF")
+                email_notify.send_email(f"Schema validation failed. Maybe it's just an OCR issue, or maybe they changed the format of the scanned PDF. CSV first row string: {csv_string}")
         
         
 
